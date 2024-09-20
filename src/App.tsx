@@ -52,7 +52,7 @@ function App() {
       <WalletProvider wallets={[]} autoConnect={false}>
         <WalletModalProvider>
           <Menubar />
-          <AlertDestructive error={error} setError={setError}/>
+          <AlertDestructive error={error}/>
           <div className="grid md:grid-cols-3">
           <div className="col-span-full md:col-start-2 md:col-span-1 p-5">
            <CardWithForm step={step} setStep={setStep} setError = {setError}/>
