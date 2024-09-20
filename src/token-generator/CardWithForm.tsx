@@ -45,7 +45,7 @@ export default function CardWithForm({step, setStep, setError}: {step: number, s
   const [tokenAdditionalSettings, setTokenAdditionalSettings] = useState<TokenAdditionalSettings>({ immutable: false, revokeMint: false, revokeFreeze: false });
   const [tokenCreatorInfo, setTokenCreatorInfo] = useState<TokenCreatorInfo>({ creatorName: "tokenForge", creatorWebsite: "https://www.tokenforge.com" })
   const [logoURL, setLogoURL] = useState<string>("");
-  const [tokenJsonData, setTokenJsonData] = useState<object>({});
+  //const [tokenJsonData, setTokenJsonData] = useState<object>({});
 
   useEffect(() => {
     async function handleLogoUplaod() {
@@ -80,7 +80,7 @@ export default function CardWithForm({step, setStep, setError}: {step: number, s
       return <TokenAdditionalSettings tokenAdditionalsettings={tokenAdditionalSettings} setTokenAdditionalSettings={setTokenAdditionalSettings} setStep={setStep} />
     }
     else if (step === 3) {
-      return <CustomCreatorInfo tokenCreatorInfo={tokenCreatorInfo} setTokenCreatorInfo={setTokenCreatorInfo} tokenInfo={tokenInfo} logoURL={logoURL} setStep={setStep} />
+      return <CustomCreatorInfo tokenCreatorInfo={tokenCreatorInfo} setTokenCreatorInfo={setTokenCreatorInfo} tokenInfo={tokenInfo} setTokenInfo={setTokenInfo} logoURL={logoURL} setStep={setStep} />
     }
   }
 

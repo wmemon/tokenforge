@@ -5,8 +5,6 @@ import { Progress } from './components/ui/progress'
 import CardWithForm from './token-generator/CardWithForm'
 import {
   WalletModalProvider,
-  WalletDisconnectButton,
-  WalletMultiButton,
 
 } from '@solana/wallet-adapter-react-ui';
 import Menubar from './Topbar/Menubar';
@@ -18,6 +16,9 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert"
+
+
+
  
 
 function AlertDestructive({error , setError}: {error: string , setError: React.Dispatch<React.SetStateAction<string>>}) {
