@@ -68,7 +68,7 @@ export default function CardWithForm({step, setStep, setError}: {step: number, s
 
   useEffect(() => {
     if(tokenInfo.tokenName !== "" && tokenInfo.tokenDescription !== "" && tokenInfo.tokenImage !== null && tokenInfo.tokenSymbol !== "" && tokenInfo.totalSupply !== 0 && tokenCreatorInfo.creatorName !== "" && tokenCreatorInfo.creatorWebsite !== ""){
-    const jsonData = { "name": tokenInfo.tokenName, "symbol": tokenInfo.tokenSymbol, "description": tokenInfo.tokenDescription, "image": logoURL, "extensions": {}, "creator": { "name": tokenCreatorInfo.creatorName, "site": tokenCreatorInfo.creatorWebsite } }
+    //const jsonData = { "name": tokenInfo.tokenName, "symbol": tokenInfo.tokenSymbol, "description": tokenInfo.tokenDescription, "image": logoURL, "extensions": {}, "creator": { "name": tokenCreatorInfo.creatorName, "site": tokenCreatorInfo.creatorWebsite } }
     }
   }, [tokenInfo])
 

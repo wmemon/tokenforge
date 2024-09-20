@@ -1,9 +1,5 @@
 import {
-    clusterApiUrl,
-    Connection,
     Keypair,
-    LAMPORTS_PER_SOL,
-    sendAndConfirmTransaction,
     SystemProgram,
     Transaction,
 } from '@solana/web3.js';
@@ -16,7 +12,6 @@ import {
     ExtensionType,
     getAssociatedTokenAddressSync,
     getMintLen,
-    getOrCreateAssociatedTokenAccount,
     LENGTH_SIZE,
     TOKEN_2022_PROGRAM_ID,
     TYPE_SIZE,
@@ -27,7 +22,6 @@ import {
     pack,
     createUpdateFieldInstruction,
 } from '@solana/spl-token-metadata';
-import { ConnectionContextState } from '@solana/wallet-adapter-react';
 import createAndUploadJson from './createAndUploadJson';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
@@ -50,7 +44,7 @@ interface TokenCreatorIface{
 }
 
 
-export default async function createToken({tokenName, tokenSymbol, tokenDecimals, tokenSupply, logoURL, description, isMutable, isRevokeMint, isRevokeFreeze, creatorName, creatorWebsite, wallet, connection}: TokenCreatorIface){
+export default async function createToken({tokenName, tokenSymbol, tokenDecimals, tokenSupply, logoURL, description, creatorName, creatorWebsite, wallet, connection}: TokenCreatorIface){
         const associatedTokenProgramId = ASSOCIATED_TOKEN_PROGRAM_ID;
         console.log(wallet);
         const payerKey = wallet.publicKey;
@@ -160,7 +154,7 @@ export default async function createToken({tokenName, tokenSymbol, tokenDecimals
                 let latestblockhash =  (await connection.getLatestBlockhash());
                 AssociatedTokenTransaction.recentBlockhash = latestblockhash.blockhash;
                 AssociatedTokenTransaction.feePayer = payerKey;
-                const signAssociated = await wallet.sendTransaction(AssociatedTokenTransaction, connection);
+                await wallet.sendTransaction(AssociatedTokenTransaction, connection);
 
                 const MintToTransaction = new Transaction().add(
                     createMintToInstruction(mint.publicKey, associatedToken, payerKey, tokenSupply * Math.pow(10, decimals), [] ,TOKEN_2022_PROGRAM_ID)
@@ -170,11 +164,12 @@ export default async function createToken({tokenName, tokenSymbol, tokenDecimals
                 MintToTransaction.recentBlockhash = latestblockhash.blockhash;
                 MintToTransaction.feePayer = payerKey;
 
-                const mintTo = await wallet.sendTransaction(MintToTransaction, connection);
+                await wallet.sendTransaction(MintToTransaction, connection);
 
                 console.log("Minted to : " , associatedToken.toBase58());
                 return(associatedToken.toBase58())
 
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (error: unknown) {
                 // Ignore all errors; for now there is no API-compatible way to selectively ignore the expected
                 // instruction error if the associated account exists already.

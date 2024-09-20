@@ -49,7 +49,7 @@ export const LoadingSpinner = () => {
   );
 }
 
-export default function CustomCreatorInfo({tokenCreatorInfo, setTokenCreatorInfo, tokenInfo, tokenAdditionalSettings, logoURL,  setStep}: {tokenCreatorInfo: TokenCreatorInfo, setTokenCreatorInfo: (info: TokenCreatorInfo) => void, setTokenInfo: (info: TokenInformation) => void , tokenInfo: TokenInformation, tokenAdditionalSettings: TokenAdditionalSettings, setTokenAdditionalSettings: (info: TokenAdditionalSettings) => void, logoURL: string,  setStep: (step: number | ((prev: number) => number)) => void}){
+export default function CustomCreatorInfo({tokenCreatorInfo, setTokenCreatorInfo, tokenInfo, logoURL,  setStep}: {tokenCreatorInfo: TokenCreatorInfo, setTokenCreatorInfo: (info: TokenCreatorInfo) => void, setTokenInfo: (info: TokenInformation) => void , tokenInfo: TokenInformation, tokenAdditionalSettings: TokenAdditionalSettings, setTokenAdditionalSettings: (info: TokenAdditionalSettings) => void, logoURL: string,  setStep: (step: number | ((prev: number) => number)) => void}){
     const [creatorName, setCreatorName] = useState<string>(tokenCreatorInfo.creatorName);
     const [creatorWebsite, setCreatorWebsite] = useState<string>(tokenCreatorInfo.creatorWebsite);
     const [loading, setLoading] = useState<boolean>(false);
