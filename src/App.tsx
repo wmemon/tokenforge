@@ -21,8 +21,7 @@ import {
 
  
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function AlertDestructive({error , setError}: {error: string , setError: React.Dispatch<React.SetStateAction<string>>}) {
+function AlertDestructive({error}: {error: string}) {
   if(error)
   return (
     <div>
